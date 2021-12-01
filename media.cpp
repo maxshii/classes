@@ -1,12 +1,11 @@
-
+#include <iostream>
 #include <cstring>
 #include "media.h"
 
-Media::Media(char *t, int y)
+Media::Media(char *newTitle, int newYear)
 {
-  title = new char[80];
-  strcpy(title, t);
-  year = y;
+  title = newTitle;
+  year = newYear;
 }
 
 char* Media::getTitle()

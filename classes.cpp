@@ -8,12 +8,12 @@ using namespace::std;
 
 int main()
 {
-  char* b = new char;
-  strcpy(b, "pog");
-  Media* m = new Media(b, 2001);
 
-  int a = m->getYear();
-  cout << a;
+  char c[80] = "pog";
+  char* b = new char;
+  strcpy(b, c);
+  Media* m = new Media(b, 2001);
+  cout << (m->getTitle()) << m->getYear();
 }
 
 
