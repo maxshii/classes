@@ -2,15 +2,18 @@
 #include<cstring>
 
 #include "media.h"
-#include "movie.h"
+
 
 using namespace::std;
 
 int main()
 {
-  Movie m;
-  strcpy(m.title, "Baka");
-  cout << m.title << endl;
+  char* b = new char;
+  strcpy(b, "pog");
+  Media* m = new Media(b, 2001);
+
+  int a = m->getYear();
+  cout << a;
 }
 
 
