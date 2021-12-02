@@ -1,20 +1,25 @@
-
-#include <cstring>
 #include "movie.h"
 
-Movie::Movie(char *newTitle, int newYear, char *d, int newDuration, int newRating):Media(newTitle, newYear)
+Movie::Movie(char *newTitle, int newYear, char *newDirector, int newDuration, int newRating):Media(newTitle, newYear)
 {
-  title = new char[80];
-  strcpy(title, t);
-  year = y;
+  title = newTitle;
+  year = newYear;
+  director = newDirector;
+  duration = newDuration;
+  rating = newRating;
 }
 
-char* Media::getTitle()
+char* Movie::getDirector()
 {
-  return title;
+  return director;
 }
 
-int Media::getYear()
+int Movie::getDuration()
 {
-  return year;
+  return duration;
+}
+
+int Movie::getRating()
+{
+  return rating;
 }

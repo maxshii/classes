@@ -2,7 +2,12 @@
 
 class Videogame : public Media
 {
-  char publisher[80];
+  public:
+    Videogame(char *newTitle, int newYear, char *newPublisher, float newRating);
+    char* getPublisher();
+    float getRating();
+  protected:
+  char* publisher;
   float rating;
 
 };
