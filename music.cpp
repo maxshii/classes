@@ -9,6 +9,13 @@ Music::Music(char *newTitle, int newYear, char *newArtist, char *newPublisher, i
   durationS = newDurationS;
 }
 
+Music::~Music()
+{
+  delete title;
+  delete artist;
+  delete publisher;
+}
+
 char* Music::getArtist()
 {
   return artist;

@@ -4,6 +4,7 @@ class Movie : public Media
 {
   public:
     Movie(char *newTitle, int newYear, char *newDirector, int newDuration, int newRating);
+    ~Movie()
     char* getDirector();
     int getDuration();
     int getRating();

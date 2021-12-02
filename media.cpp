@@ -6,6 +6,11 @@ Media::Media(char *newTitle, int newYear)
   year = newYear;
 }
 
+Media::~Media()
+{
+  delete title;
+}
+
 char* Media::getTitle()
 {
   return title;

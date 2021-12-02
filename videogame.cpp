@@ -8,6 +8,12 @@ Videogame::Videogame(char *newTitle, int newYear, char *newPublisher, float newR
   rating = newRating;
 }
 
+Videogame::~Videogame()
+{
+  delete title;
+  delete publisher;
+}
+
 char* Videogame::getPublisher()
 {
    return publisher;

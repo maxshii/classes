@@ -9,6 +9,12 @@ Movie::Movie(char *newTitle, int newYear, char *newDirector, int newDuration, in
   rating = newRating;
 }
 
+Movie::~Movie()
+{
+  delete title;
+  delete director;
+}
+
 char* Movie::getDirector()
 {
   return director;

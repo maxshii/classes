@@ -5,10 +5,10 @@ class Media
 {
   public:
     Media(char* newTitle, int newYear);
+    ~Media();
     char* getTitle();
     int getYear();
-  
-  //protected:
+  protected:
     char* title;
     int year;
 };

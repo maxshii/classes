@@ -4,6 +4,7 @@ class Videogame : public Media
 {
   public:
     Videogame(char *newTitle, int newYear, char *newPublisher, float newRating);
+    ~Videogame();
     char* getPublisher();
     float getRating();
   protected:
