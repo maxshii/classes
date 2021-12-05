@@ -19,22 +19,8 @@ void search(vector<Media*> &vect);
 void del(vector<Media*> &vect);
 
 int main()
-{
-  char c[80] = "baka";
-  char* b = new char;
-  strcpy(b, c);
-  char* d = new char;
-  strcpy(d, "abd");
-  Movie* m = new Movie(b, 2001, d, 90, 80);
-
-  char* f = new char;
-  strcpy(f, "baka");
-  Movie* chese = new Movie(f, 2001, f, 34, 43);
-
-  
+{ 
   vector<Media*> data;
-  data.push_back(m);
-  data.push_back(chese);
 
   while(true)
   {
@@ -59,16 +45,10 @@ int main()
       break;
     }
 
-  }
-
-
-    
-    
-
-    
+  }  
 }
 
-void add(vector<Media*>& vect)
+void add(vector<Media*>& vect) //adds media, can be movie music or videogame
 {
   cout << "Enter media type (movie, music, videogame): \n";
   char type[80];
@@ -165,7 +145,7 @@ void add(vector<Media*>& vect)
   
 }
 
-void search(vector<Media*> &vect)
+void search(vector<Media*> &vect) //search using title or year
 {
   cout << "Search using title or year?\n";
   char input[80];
@@ -179,11 +159,10 @@ void search(vector<Media*> &vect)
 
     int count = 0;
     vector<Media*>::iterator it;
-
     
     for(it = vect.begin(); it < vect.end(); ++it)
       {
-        if(strcmp((*it)->getTitle(), title) == 0)
+        if(strcmp((*it)->getTitle(), title) == 0) //prints matching objects
         {
           count++;
           (*it)->print();
@@ -231,6 +210,7 @@ void del(vector<Media*> &vect)
     vector<Media*>::iterator it;
     bool exit = false;
 
+    //outer while loop restarts inner while loop with iterator at same spot in the vector whenever erase occurs, both end after it reaches end of vector
     auto start = vect.begin();
     while(it != vect.end())
     {
