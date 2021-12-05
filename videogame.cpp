@@ -10,7 +10,6 @@ Videogame::Videogame(char *newTitle, int newYear, char *newPublisher, float newR
 
 Videogame::~Videogame()
 {
-  delete title;
   delete publisher;
 }
 

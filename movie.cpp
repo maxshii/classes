@@ -1,4 +1,5 @@
 #include "movie.h"
+#include <iostream>
 
 Movie::Movie(char *newTitle, int newYear, char *newDirector, int newDuration, int newRating):Media(newTitle, newYear)
 {
@@ -11,7 +12,6 @@ Movie::Movie(char *newTitle, int newYear, char *newDirector, int newDuration, in
 
 Movie::~Movie()
 {
-  delete title;
   delete director;
 }
 

@@ -4,7 +4,7 @@ class Music : public Media
 {
   public:
     Music(char *newTitle, int newYear, char *newArtist, char *newPublisher, int newDurationS);
-    ~Movie();
+    ~Music();
     char* getArtist();
     char* getPublisher();
     int getDuration();

@@ -11,7 +11,6 @@ Music::Music(char *newTitle, int newYear, char *newArtist, char *newPublisher, i
 
 Music::~Music()
 {
-  delete title;
   delete artist;
   delete publisher;
 }
