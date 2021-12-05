@@ -20,7 +20,7 @@ Music::~Music()
 
 void Music::print()
 {
-  cout << "\nTitle: " << title << "\nYear: " << year << "\nArtist: " << artist << "\nPublisher: " << publisher << " min\nDuration: " << durationS << "/5\n\n";
+  cout << "\nTitle: " << title << "\nYear: " << year << "\nArtist: " << artist << "\nPublisher: " << publisher << " \nDuration: " << durationS << " seconds\n\n";
 }
 
 char* Music::getArtist()

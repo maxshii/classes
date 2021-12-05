@@ -1,3 +1,8 @@
+/*
+ *This program will allow the user to add, search, and delete items in a database of *different media
+ *Author: Max Shi
+ *12/5/2021
+ */
 #include<iostream>
 #include<cstring>
 #include<vector>
@@ -33,26 +38,27 @@ int main()
 
   while(true)
   {
-    cout << "Enter command(ADD, SEARCH, DELETE, QUIT";
+    cout << "Enter command (ADD, SEARCH, DELETE, QUIT)\n";
     char input[80];
-    cin.getline(input, 80);
+    cin.getline(input, 80, '\n');
 
-    if(strcmp(input, "ADD"))
+    if(strcmp(input, "ADD") == 0)
     {
       add(data);
     }
-    else if(strcmp(input, "SEARCH"))
+    else if(strcmp(input, "SEARCH") == 0)
     {
       search(data);
     }
-    else if(strcmp(input, "DELETE"))
+    else if(strcmp(input, "DELETE") == 0)
     {
       del(data);
     }
-    else if(strcmp(input, "QUIT"))
+    else if(strcmp(input, "QUIT") == 0)
     {
       break;
     }
+
   }
 
 
@@ -86,6 +92,7 @@ void add(vector<Media*>& vect)
     cin >> duration;
     cout << "Enter the rating as an integer on a scale of 0-5: ";
     cin >> rating;
+    cin.ignore();
 
     char *newTitle = new char;
     strcpy(newTitle, title);
@@ -113,9 +120,9 @@ void add(vector<Media*>& vect)
     cin.getline(artist, 80);
     cout << "Enter the publisher: ";
     cin.getline(publisher, 80);
-    cout << "Enter the duration as an integer in minutes: ";
+    cout << "Enter the duration as an integer in seconds: ";
     cin >> duration;
-    
+    cin.ignore();
 
     char *newTitle = new char;
     strcpy(newTitle, title);
@@ -145,7 +152,7 @@ void add(vector<Media*>& vect)
     cin.getline(publisher, 80);
     cout << "Enter the rating as an integer on a scale of 0-5: ";
     cin >> rating;
-    
+    cin.ignore();
 
     char *newTitle = new char;
     strcpy(newTitle, title);
@@ -155,7 +162,7 @@ void add(vector<Media*>& vect)
     Videogame *game = new Videogame(newTitle, year, newPublisher, rating);
     vect.push_back(game);
   }
-  cin.ignore(100, '\n');
+  
 }
 
 void search(vector<Media*> &vect)
@@ -183,17 +190,17 @@ void search(vector<Media*> &vect)
         }
       }
       
-      cout << "Found " << count << " items\n";
+      cout << "Found " << count << " items\n\n";
   }
   else if(strcmp(input, "year") == 0) //search by year
   {
     int year;
     cout << "Enter year to search: ";
     cin >> year;
+    cin.ignore();
 
     int count = 0;
     vector<Media*>::iterator it;
-
 
     for(it = vect.begin(); it < vect.end(); ++it)
       {
@@ -204,7 +211,7 @@ void search(vector<Media*> &vect)
         }
       }
       
-      cout << "Found " << count << " items\n";
+      cout << "Found " << count << " items\n\n";
   }
 }
 
@@ -227,7 +234,7 @@ void del(vector<Media*> &vect)
     {
       for(it = vect.begin(); it < vect.end(); ++it)
         {
-          if(strcmp((*it)->getTitle(), title) == 0)
+          if(strcmp((*it)->getTitle(), title) == 0) //checks if it has same title
           {
             (*it)->print();
             cout << "Delete this item? (y/n)\n";
@@ -237,11 +244,15 @@ void del(vector<Media*> &vect)
               count++;
               delete *it;
               vect.erase(it);
+              if(it == vect.end()-1) //if after erasing it is at the end, don't exit while loop(so it can check if the new end object matches)
+              {
+                continue;
+              }
             }
           }
-          if (it == vect.end() - 1)//fufills exit condition for while loop if entire vector has been searched
+          if (it == vect.end()-1) //fufills exit condition for while loop if entire vector has been searched
           { 
-                exit = true;
+            exit = true;
           }
         }
       }
@@ -252,6 +263,7 @@ void del(vector<Media*> &vect)
     int year;
     cout << "Enter year to delete: ";
     cin >> year;
+    cin.ignore();
 
     int count = 0;
     vector<Media*>::iterator it;
@@ -264,18 +276,23 @@ void del(vector<Media*> &vect)
           {
             (*it)->print();
             cout << "Delete this item? (y/n)\n";
-            cin.getline(input, 80);
+            cin.getline(input, 80, '\n');
             if(strcmp(input, "y") == 0)
             {
               count++;
               delete *it;
               vect.erase(it);
+              if(it == vect.end()-1) //if after erasing it is at the end, don't exit while loop
+              {
+                continue;
+              }
             }
           }
+          if (it == vect.end()-1)
+          {
+            exit = true;
+          }
         }
-        if (it == vect.end()-1){
-              exit = true;
-            }
       }
       cout << "Deleted " << count << " items\n";
   }

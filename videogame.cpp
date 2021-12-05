@@ -18,7 +18,7 @@ Videogame::~Videogame()
 
 void Videogame::print()
 {
-  cout << "\nTitle: " << title << "\nYear: " << year << "\nPublisher: " << publisher << " min\nRating: " << rating << "/5\n\n";
+  cout << "\nTitle: " << title << "\nYear: " << year << "\nPublisher: " << publisher << "\nRating: " << rating << "/5\n\n";
 }
 
 char* Videogame::getPublisher()
