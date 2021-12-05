@@ -24,7 +24,7 @@ int main()
   char* b = new char;
   strcpy(b, c);
   char* d = new char;
-  strcpy(d, "abd");
+  strcpy(d, "abad");
   Movie* m = new Movie(b, 2001, d, 90, 80);
 
   char* f = new char;
