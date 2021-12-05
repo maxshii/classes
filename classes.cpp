@@ -10,39 +10,51 @@
 using namespace::std;
 
 void add(vector<Media*>& vect);
-void search();
+void search(vector<Media*>& vect);
 void del(vector<Media*>& vect);
 
 int main()
 {
-  char c[80] = "pog";
+  char c[80] = "baka";
   char* b = new char;
   strcpy(b, c);
   char* d = new char;
   strcpy(d, "abd");
   Movie* m = new Movie(b, 2001, d, 90, 80);
 
+  char* f = new char;
+  strcpy(f, "baka");
+  Movie* chese = new Movie(f, 2001, f, 34, 43);
+
+  
   vector<Media*> data;
   data.push_back(m);
-
-  vector<Media*>::iterator it;
-  cout << static_cast<Movie*>(*data.begin())->getTitle();
+  data.push_back(chese);
 
 
   int i = 0;
-  while(true)
-  {
+  //while(true)
+  //{
     
-    add(data);
     
-    for(it = data.begin(); it < data.end(); ++it)
+
+    vector<Media*>::iterator it;
+    for(auto it = data.begin(); it < data.end(); ++it)
     {
       cout<<(*it)->getTitle()<<endl;
       
     }
-    cout << i++;
-  }
-
+    del(data);
+ 
+    cout << i++ << "\n\n";
+    for(auto it = data.begin(); it < data.end(); ++it)
+    {
+      cout<<(*it)->getTitle()<<endl;
+      
+    }
+    
+  
+  
 }
 
 void add(vector<Media*>& vect)
@@ -62,6 +74,7 @@ void add(vector<Media*>& vect)
     cin.getline(title, 80);
     cout << "Enter the year: ";
     cin >> year;
+    cin.ignore(100, '\n');
     cout << "Enter the director: ";
     cin.getline(director, 80);
     cout << "Enter the duration as an integer in minutes: ";
@@ -90,9 +103,10 @@ void add(vector<Media*>& vect)
     cin.getline(title, 80);
     cout << "Enter the year: ";
     cin >> year;
+    cin.ignore(100, '\n');
     cout << "Enter the artist: ";
     cin.getline(artist, 80);
-    cout << "Enter the publisher";
+    cout << "Enter the publisher: ";
     cin.getline(publisher, 80);
     cout << "Enter the duration as an integer in minutes: ";
     cin >> duration;
@@ -121,7 +135,8 @@ void add(vector<Media*>& vect)
     cin.getline(title, 80);
     cout << "Enter the year: ";
     cin >> year;
-    cout << "Enter the publisher";
+    cin.ignore(100, '\n');
+    cout << "Enter the publisher: ";
     cin.getline(publisher, 80);
     cout << "Enter the rating as an integer on a scale of 0-5: ";
     cin >> rating;
@@ -135,6 +150,30 @@ void add(vector<Media*>& vect)
     Videogame *game = new Videogame(newTitle, year, newPublisher, rating);
     vect.push_back(game);
   }
-  cin.ignore();
+  cin.ignore(100, '\n');
 }
 
+void del(vector<Media*>& vect)
+{
+  char title[80] = "adc";
+
+  vector<Media*>::iterator it;
+  bool exit = false;
+  while (exit == false)
+  {
+    
+    for(it = vect.begin(); it < vect.end(); ++it)
+      {
+        if(strcmp((*it)->getTitle(), "baka") == 0)
+        {
+          cout << "del";
+          delete *it;
+          if (it == vect.end()-1){
+            exit = true;
+            cout<<"exit";
+          }
+          vect.erase(it);
+        }
+      }
+    }
+}
