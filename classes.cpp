@@ -230,11 +230,14 @@ void del(vector<Media*> &vect)
     int count = 0;
     vector<Media*>::iterator it;
     bool exit = false;
-    while (exit == false) //iterates through the vector and erases matching objects until it reaches the end of vector
+
+    auto start = vect.begin();
+    while(it != vect.end())
     {
-      for(it = vect.begin(); it < vect.end(); ++it)
-        {
-          if(strcmp((*it)->getTitle(), title) == 0) //checks if it has same title
+      it = start;
+      while(it != vect.end())
+      {
+          if(strcmp((*it)->getTitle(), title) == 0)
           {
             (*it)->print();
             cout << "Delete this item? (y/n)\n";
@@ -242,20 +245,16 @@ void del(vector<Media*> &vect)
             if(strcmp(input, "y") == 0)
             {
               count++;
+              start = it;
               delete *it;
               vect.erase(it);
-              if(it == vect.end()-1) //if after erasing it is at the end, don't exit while loop(so it can check if the new end object matches)
-              {
-                continue;
-              }
+              break;
             }
           }
-          if (it == vect.end()-1) //fufills exit condition for while loop if entire vector has been searched
-          { 
-            exit = true;
-          }
-        }
+          it++;
       }
+      
+    }
       cout << "Deleted " << count << " items\n";
   }
   else if(strcmp(input, "year") == 0) //delete by year
@@ -267,33 +266,31 @@ void del(vector<Media*> &vect)
 
     int count = 0;
     vector<Media*>::iterator it;
-    bool exit = false;
-    while (exit == false) //iterates through the vector and erases matching objects until it reaches the end of vector
-    { 
-      for(it = vect.begin(); it < vect.end(); ++it)
-        {
+    
+    auto start = vect.begin();
+    while(it != vect.end())
+    {
+      it = start;
+      while(it != vect.end())
+      {
           if((*it)->getYear() == year)
           {
             (*it)->print();
             cout << "Delete this item? (y/n)\n";
-            cin.getline(input, 80, '\n');
+            cin.getline(input, 80);
             if(strcmp(input, "y") == 0)
             {
               count++;
+              start = it;
               delete *it;
               vect.erase(it);
-              if(it == vect.end()-1) //if after erasing it is at the end, don't exit while loop
-              {
-                continue;
-              }
+              break;
             }
           }
-          if (it == vect.end()-1)
-          {
-            exit = true;
-          }
-        }
+          it++;
       }
+      
+    }
       cout << "Deleted " << count << " items\n";
   }
 }
