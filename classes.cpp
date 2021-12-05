@@ -9,9 +9,9 @@
 
 using namespace::std;
 
-void add(vector<Media*>& vect);
-void search(vector<Media*>& vect);
-void del(vector<Media*>& vect);
+void add(vector<Media*> &vect);
+void search(vector<Media*> &vect);
+void del(vector<Media*> &vect);
 
 int main()
 {
@@ -31,30 +31,35 @@ int main()
   data.push_back(m);
   data.push_back(chese);
 
+  while(true)
+  {
+    cout << "Enter command(ADD, SEARCH, DELETE, QUIT";
+    char input[80];
+    cin.getline(input, 80);
 
-  int i = 0;
-  //while(true)
-  //{
+    if(strcmp(input, "ADD"))
+    {
+      add(data);
+    }
+    else if(strcmp(input, "SEARCH"))
+    {
+      search(data);
+    }
+    else if(strcmp(input, "DELETE"))
+    {
+      del(data);
+    }
+    else if(strcmp(input, "QUIT"))
+    {
+      break;
+    }
+  }
+
+
     
     
 
-    vector<Media*>::iterator it;
-    for(auto it = data.begin(); it < data.end(); ++it)
-    {
-      cout<<(*it)->getTitle()<<endl;
-      
-    }
-    del(data);
- 
-    cout << i++ << "\n\n";
-    for(auto it = data.begin(); it < data.end(); ++it)
-    {
-      cout<<(*it)->getTitle()<<endl;
-      
-    }
     
-  
-  
 }
 
 void add(vector<Media*>& vect)
@@ -153,27 +158,125 @@ void add(vector<Media*>& vect)
   cin.ignore(100, '\n');
 }
 
-void del(vector<Media*>& vect)
+void search(vector<Media*> &vect)
 {
-  char title[80] = "adc";
+  cout << "Search using title or year?\n";
+  char input[80];
+  cin.getline(input, 80);
 
-  vector<Media*>::iterator it;
-  bool exit = false;
-  while (exit == false)
+  if(strcmp(input, "title") == 0) // search by title
   {
+    char title[80];
+    cout << "Enter title to search: ";
+    cin.getline(title, 80);
+
+    int count = 0;
+    vector<Media*>::iterator it;
+
     
     for(it = vect.begin(); it < vect.end(); ++it)
       {
-        if(strcmp((*it)->getTitle(), "baka") == 0)
+        if(strcmp((*it)->getTitle(), title) == 0)
         {
-          cout << "del";
-          delete *it;
-          if (it == vect.end()-1){
-            exit = true;
-            cout<<"exit";
-          }
-          vect.erase(it);
+          count++;
+          (*it)->print();
         }
       }
-    }
+      
+      cout << "Found " << count << " items\n";
+  }
+  else if(strcmp(input, "year") == 0) //search by year
+  {
+    int year;
+    cout << "Enter year to search: ";
+    cin >> year;
+
+    int count = 0;
+    vector<Media*>::iterator it;
+
+
+    for(it = vect.begin(); it < vect.end(); ++it)
+      {
+        if((*it)->getYear() == year)
+        {
+          count++;
+          (*it)->print();
+        }
+      }
+      
+      cout << "Found " << count << " items\n";
+  }
+}
+
+void del(vector<Media*> &vect)
+{
+  cout << "Delete by title or year?\n";
+  char input[80];
+  cin.getline(input, 80);
+
+  if(strcmp(input, "title") == 0) // delete by title
+  {
+    char title[80];
+    cout << "Enter title to delete: ";
+    cin.getline(title, 80);
+
+    int count = 0;
+    vector<Media*>::iterator it;
+    bool exit = false;
+    while (exit == false) //iterates through the vector and erases matching objects until it reaches the end of vector
+    {
+      for(it = vect.begin(); it < vect.end(); ++it)
+        {
+          if(strcmp((*it)->getTitle(), title) == 0)
+          {
+            (*it)->print();
+            cout << "Delete this item? (y/n)\n";
+            cin.getline(input, 80);
+            if(strcmp(input, "y") == 0)
+            {
+              count++;
+              delete *it;
+              vect.erase(it);
+            }
+          }
+          if (it == vect.end() - 1)//fufills exit condition for while loop if entire vector has been searched
+          { 
+                exit = true;
+          }
+        }
+      }
+      cout << "Deleted " << count << " items\n";
+  }
+  else if(strcmp(input, "year") == 0) //delete by year
+  {
+    int year;
+    cout << "Enter year to delete: ";
+    cin >> year;
+
+    int count = 0;
+    vector<Media*>::iterator it;
+    bool exit = false;
+    while (exit == false) //iterates through the vector and erases matching objects until it reaches the end of vector
+    { 
+      for(it = vect.begin(); it < vect.end(); ++it)
+        {
+          if((*it)->getYear() == year)
+          {
+            (*it)->print();
+            cout << "Delete this item? (y/n)\n";
+            cin.getline(input, 80);
+            if(strcmp(input, "y") == 0)
+            {
+              count++;
+              delete *it;
+              vect.erase(it);
+            }
+          }
+        }
+        if (it == vect.end()-1){
+              exit = true;
+            }
+      }
+      cout << "Deleted " << count << " items\n";
+  }
 }

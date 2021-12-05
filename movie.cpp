@@ -1,6 +1,8 @@
 #include "movie.h"
 #include <iostream>
 
+using namespace::std;
+
 Movie::Movie(char *newTitle, int newYear, char *newDirector, int newDuration, int newRating):Media(newTitle, newYear)
 {
   title = newTitle;
@@ -13,6 +15,11 @@ Movie::Movie(char *newTitle, int newYear, char *newDirector, int newDuration, in
 Movie::~Movie()
 {
   delete director;
+}
+
+void Movie::print()
+{
+  cout << "\nTitle: " << title << "\nYear: " << year << "\nDirector: " << director << "\nDuration: " << duration << " min\nRating: " << rating << "/5\n\n";
 }
 
 char* Movie::getDirector()

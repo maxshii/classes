@@ -6,6 +6,7 @@ class Media
   public:
     Media(char* newTitle, int newYear);
     ~Media();
+    virtual void print();
     char* getTitle();
     int getYear();
   protected:
